@@ -1,21 +1,23 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class GameOverStage : MonoBehaviour , IStage
+public class GameOverScreen : MonoBehaviour
 {
     public UI_Animations uiAnimations;
     public StageManager stageManager;
-    public GameObject gameoverScreen;
-    public void Initialize()
+
+    public void Show()
     {
-        gameoverScreen.SetActive(true);
+        gameObject.SetActive(true);
         uiAnimations.ScaleWithPop(WaitUntilLevelSelect);
     }
-    public void Finish()
+
+    public void Hide()
     {
-        gameoverScreen.SetActive(false);
+        StopAllCoroutines();
+        gameObject.SetActive(false);
+
     }
 
     void WaitUntilLevelSelect()
@@ -34,5 +36,4 @@ public class GameOverStage : MonoBehaviour , IStage
 
         afterWait?.Invoke();
     }
-  
 }

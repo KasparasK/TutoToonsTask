@@ -13,7 +13,6 @@ public class UI_Animations : MonoBehaviour
     }
 
     #region MegaPop
-
     public void MegaPop(Action callback = null)
     {
         StartCoroutine(MegaPopControler(callback));

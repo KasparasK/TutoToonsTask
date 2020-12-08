@@ -14,8 +14,6 @@ public class Node : MonoBehaviour
     public Sprite notConnected;
     public Sprite connected;
 
-    private bool isConnected;
-
     public void Initialize(int num, Action<Node> onClick)
     {
         this.onClick = onClick;
@@ -24,13 +22,11 @@ public class Node : MonoBehaviour
 
         spriteRenderer.sprite = notConnected;
 
-        isConnected = false;
     }
 
     void OnMouseDown()
-    {
-        if(!isConnected)
-            onClick?.Invoke(this);
+    { 
+        onClick?.Invoke(this);
     }
 
     public void OnConnected()
@@ -38,6 +34,5 @@ public class Node : MonoBehaviour
         spriteRenderer.sprite = connected;
         uiTextAnimations.ChangeColor(new Color(0, 0, 0, 0));
 
-        isConnected = true;
     }
 }

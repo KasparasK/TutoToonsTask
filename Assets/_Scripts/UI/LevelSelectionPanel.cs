@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class LevelSelectionPanel : MonoBehaviour
 {
@@ -11,20 +9,18 @@ public class LevelSelectionPanel : MonoBehaviour
     public StageManager stageManager;
 
     public Transform gridParent;
-    public void Initialize()
+    public void Show()
     {
-        
         int levelCount = levelDataHolder.LevelsRoot.levels.Count;
 
         Populate(levelCount);
-        gridParent.gameObject.SetActive(true);
+        gameObject.SetActive(true);
 
     }
 
     public void Hide()
     {
-        gridParent.gameObject.SetActive(false);
-
+        gameObject.SetActive(false);
     }
 
     void Populate(int count)

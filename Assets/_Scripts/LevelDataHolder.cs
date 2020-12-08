@@ -29,9 +29,23 @@ public class LevelDataHolder : MonoBehaviour
     List<Vector2> ConvertFromRawData(Level level)
     {
         List<Vector2> positions= new List<Vector2>();
+
+        if (level.level_data.Count < 4)
+        {
+            Debug.LogError("Not enough points to form a level");
+            return null;
+        }
+
+        if (level.level_data.Count % 2 != 0)
+        {
+            Debug.LogError("Coordinates count not even");
+            return null;
+
+        }
+
         for (int i = 0; i < level.level_data.Count; i+=2)
         {
-            positions.Add(new Vector2(level.level_data[i]/10, -level.level_data[i + 1]/10));
+            positions.Add(new Vector2(level.level_data[i]/10f, -level.level_data[i + 1]/10f));
         }
 
         return positions;

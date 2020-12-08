@@ -1,15 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class LevelSelectionStage : MonoBehaviour , IStage
 {
     public LevelSelectionPanel levelSelectionPanel;
-
-    
     public void Initialize()
     {
-        levelSelectionPanel.Initialize();
+        levelSelectionPanel.Show();
     }
 
     public void Finish()

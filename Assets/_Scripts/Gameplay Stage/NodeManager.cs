@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public class GameplayStage : MonoBehaviour , IStage
+public class NodeManager : MonoBehaviour
 {
     public GameObject nodePref;
     public GameObject ropePref;
@@ -27,7 +26,7 @@ public class GameplayStage : MonoBehaviour , IStage
     private bool initialized;
     void Update()
     {
-        if(initialized)
+        if (initialized)
         {
             if (!connectionInProgress && connectionQueue.Count > 0)
             {
@@ -35,6 +34,33 @@ public class GameplayStage : MonoBehaviour , IStage
                 StartCoroutine(Connect(conn));
             }
         }
+    }
+    public void Initialize()
+    {
+        connectionQueue = new Queue<Connection>();
+        currLevel = levelDataHolder.GetActiveLevel();
+
+        if (currLevel != null)
+        {
+            DeleteNodes();
+            SpawnNodes();
+
+            lastConnectedID = 1;
+            connectionInProgress = false;
+            initialized = true;
+        }
+        else
+        {
+            Debug.LogError("Level could not be loaded");
+            stageManager.SetStage(0);
+        }
+    }
+
+    public void Finish()
+    {
+        StopAllCoroutines();
+        DeleteNodes();
+        initialized = false;
     }
 
     IEnumerator Connect(Connection conn, bool final = false)
@@ -46,7 +72,7 @@ public class GameplayStage : MonoBehaviour , IStage
         SpriteRenderer renderer = rope.GetComponent<SpriteRenderer>();
         renderer.size = new Vector2(ropeWidth, 0);
 
-        for (float t = 0; t < ropeAnimationDuration; t+=Time.deltaTime)
+        for (float t = 0; t < ropeAnimationDuration; t += Time.deltaTime)
         {
             float size = Mathf.Lerp(0, conn.ropeLength, t / ropeAnimationDuration);
             renderer.size = new Vector2(ropeWidth, size);
@@ -61,8 +87,8 @@ public class GameplayStage : MonoBehaviour , IStage
         conn.b.OnConnected();
 
         connectionInProgress = false;
-        
-        if(!final)
+
+        if (!final)
             CheckForFinalRope();
         else
             stageManager.SetStage(2);
@@ -70,36 +96,19 @@ public class GameplayStage : MonoBehaviour , IStage
 
     void CheckForFinalRope()
     {
-        if (lastConnectedID == nodes.Count && connectionQueue.Count == 0)
+        if (lastConnectedID == nodes.Count && connectionQueue.Count == 0 )
         {
-            StartCoroutine(Connect(new Connection(nodes[nodes.Count - 1],nodes[0]), true));
+            if (nodes.Count > 2)
+                StartCoroutine(Connect(new Connection(nodes[nodes.Count - 1], nodes[0]), true));
+            else
+                stageManager.SetStage(2);
 
         }
     }
 
-    public void Initialize()
-    {
-        connectionQueue = new Queue<Connection>();
-        currLevel = levelDataHolder.GetActiveLevel();
-
-        DeleteNodes();
-        SpawnNodes();
-        
-        lastConnectedID = 1;
-        connectionInProgress = false;
-        initialized = true;
-    }
-   
-    public void Finish()
-    {
-        StopAllCoroutines();
-        DeleteNodes();
-        initialized = false;
-    }
-
     void DeleteNodes()
     {
-        if(parent != null)
+        if (parent != null)
             Destroy(parent.gameObject);
 
         parent = new GameObject("Nodes").transform;
@@ -111,25 +120,28 @@ public class GameplayStage : MonoBehaviour , IStage
         {
             GameObject obj = Instantiate(nodePref, currLevel[i], Quaternion.identity, parent);
             Node node = obj.GetComponent<Node>();
-            node.Initialize(i+1, OnNodeClick); 
+            node.Initialize(i + 1, OnNodeClick);
             nodes.Add(node);
         }
     }
 
     void OnNodeClick(Node node)
     {
-        if (selected == null)
-            selected = node;
-        else if (selected == node)
-            return;
-        else if (node.num - 1 == selected.num && selected.num == lastConnectedID)
+        if (selected != node)
         {
-            connectionQueue.Enqueue(new Connection(selected, node));
-            lastConnectedID++;
-            selected = node;
+            if (selected == null)
+            {
+                if(node.num == lastConnectedID)
+                    selected = node;
+            }
+            else if (node.num - 1 == selected.num && selected.num == lastConnectedID)
+            {
+                connectionQueue.Enqueue(new Connection(selected, node));
+                lastConnectedID++;
+                selected = node;
+            }
+            else
+                selected = null;
         }
-        else
-            selected = null;
-            
     }
 }
