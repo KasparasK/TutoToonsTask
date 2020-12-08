@@ -529,6 +529,7 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
+  - component: {fileID: 519420030}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -544,6 +545,19 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
+--- !u!114 &519420030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d640e758c05b9aa4f9518d720cb69031, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneWidth: 200
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -571,7 +585,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 54.85
+  orthographic size: 51.979164
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -940,6 +954,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 491f7d43d96bee74fb4725d87ec30024, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gridParentPref: {fileID: 6344136450771598432, guid: fb46a949241095446a5f2dddd7159371,
+    type: 3}
   tilePref: {fileID: 7154073131701188005, guid: f3b05c89448cd80418dca2243f67228b,
     type: 3}
   levelDataHolder: {fileID: 496750286}

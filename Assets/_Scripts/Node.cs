@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Node : MonoBehaviour
 {
@@ -17,6 +14,8 @@ public class Node : MonoBehaviour
     public Sprite notConnected;
     public Sprite connected;
 
+    private bool isConnected;
+
     public void Initialize(int num, Action<Node> onClick)
     {
         this.onClick = onClick;
@@ -24,16 +23,21 @@ public class Node : MonoBehaviour
         numTxt.text = num.ToString();
 
         spriteRenderer.sprite = notConnected;
+
+        isConnected = false;
     }
 
     void OnMouseDown()
     {
-        onClick?.Invoke(this);
+        if(!isConnected)
+            onClick?.Invoke(this);
     }
 
     public void OnConnected()
     {
         spriteRenderer.sprite = connected;
         uiTextAnimations.ChangeColor(new Color(0, 0, 0, 0));
+
+        isConnected = true;
     }
 }
