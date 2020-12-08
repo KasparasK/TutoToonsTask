@@ -34,8 +34,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1, y: 0.2}
+  m_AnchoredPosition: {x: 0.568, y: 0}
+  m_SizeDelta: {x: 3.13, y: 2.02}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5938917366360636688
 CanvasRenderer:
@@ -91,8 +91,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 0.2
-  m_fontSizeBase: 0.2
+  m_fontSize: 2
+  m_fontSizeBase: 2
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -169,8 +169,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.898, y: 0.036}
-  m_SizeDelta: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 2.312, y: 0.997}
+  m_SizeDelta: {x: 2, y: 2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &5938917367122672626
 Canvas:
@@ -299,10 +299,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 2b3a892397ec2164c9aee958e9a978cf, type: 3}
+  m_SortingLayerID: 788092315
+  m_SortingLayer: 1
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: 8cbb42278addbec459e006da8db88229, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -323,6 +323,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5938917367997632904}
   - component: {fileID: 2825327195797683166}
+  - component: {fileID: 5320321498159562045}
   m_Layer: 0
   m_Name: Node
   m_TagString: Untagged
@@ -358,3 +359,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 429ef942a7e943142aec14d4c727beac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numTxt: {fileID: 5938917366360636695}
+  num: 0
+--- !u!58 &5320321498159562045
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5938917367997632911}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1.5
