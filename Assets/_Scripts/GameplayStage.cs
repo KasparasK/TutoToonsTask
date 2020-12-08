@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class GameplayStage : MonoBehaviour , IStage
 {
+    public GameObject nodePref;
+    private List<Node> nodes;
+    private Node selected;
+
+    public LevelDataHolder levelDataHolder;
+
+    private List<Vector2> currLevel;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,11 +25,22 @@ public class GameplayStage : MonoBehaviour , IStage
 
     public void Initialize()
     {
-        throw new System.NotImplementedException();
+        currLevel = levelDataHolder.GetActiveLevel();
+        print(currLevel.Count + " asdasdf");
+        SpawnNodes();
     }
 
     public void Finish()
     {
-        throw new System.NotImplementedException();
+
+    }
+
+    void SpawnNodes()
+    {
+
+        for (int i = 0; i < currLevel.Count; i++)
+        {
+            Instantiate(nodePref, currLevel[i], Quaternion.identity);
+        }
     }
 }

@@ -17,11 +17,11 @@ public class LevelSelectionStage : MonoBehaviour , IStage
     }
     public void Initialize()
     {
-        throw new System.NotImplementedException();
+        //throw new System.NotImplementedException();
     }
 
     public void Finish()
     {
-        throw new System.NotImplementedException();
+        //throw new System.NotImplementedException();
     }
 }
