@@ -22,7 +22,7 @@ public class GameplayStage : MonoBehaviour , IStage
     private Queue<Connection> connectionQueue;
     private bool connectionInProgress;
     private const float ropeWidth = 0.45f;
-    private float ropeAnimationDuration = 2f;
+    private float ropeAnimationDuration = 1f;
 
     private bool initialized;
     void Update()

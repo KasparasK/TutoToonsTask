@@ -6,7 +6,7 @@ using UnityEngine;
 public class LevelDataHolder : MonoBehaviour
 {
     private LevelsRoot levelsRoot;
-    private LevelsRoot LevelsRoot
+    public LevelsRoot LevelsRoot
     {
         get
         {
