@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Color = UnityEngine.Color;
 
 public class Node : MonoBehaviour
 {
@@ -17,23 +18,39 @@ public class Node : MonoBehaviour
     public Sprite notConnected;
     public Sprite connected;
 
+    private bool isConnected;
     public void Initialize(int num, Action<Node> onClick)
     {
+
         this.onClick = onClick;
         this.num = num;
         numTxt.text = num.ToString();
-
         spriteRenderer.sprite = notConnected;
+        isConnected = false;
     }
 
     void OnMouseDown()
     {
-        onClick?.Invoke(this);
+        if(!isConnected)
+            onClick?.Invoke(this);
     }
 
     public void OnConnected()
     {
         spriteRenderer.sprite = connected;
         uiTextAnimations.ChangeColor(new Color(0, 0, 0, 0));
+        isConnected = true;
     }
+
+    public void Select()
+    {
+        if(!isConnected)
+            spriteRenderer.color = Color.red;
+    }
+    public void Deselect()
+    {
+        spriteRenderer.color = Color.white;
+
+    }
+
 }

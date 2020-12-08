@@ -9,7 +9,7 @@ public class GameOverStage : MonoBehaviour , IStage
     public StageManager stageManager;
     public GameObject gameoverScreen;
     public void Initialize()
-    {
+    { 
         gameoverScreen.SetActive(true);
         uiAnimations.ScaleWithPop(WaitUntilLevelSelect);
     }

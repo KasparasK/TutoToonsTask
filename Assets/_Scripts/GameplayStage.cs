@@ -46,6 +46,8 @@ public class GameplayStage : MonoBehaviour , IStage
         SpriteRenderer renderer = rope.GetComponent<SpriteRenderer>();
         renderer.size = new Vector2(ropeWidth, 0);
 
+        conn.a.Deselect();
+
         for (float t = 0; t < ropeAnimationDuration; t+=Time.deltaTime)
         {
             float size = Mathf.Lerp(0, conn.ropeLength, t / ropeAnimationDuration);
@@ -119,7 +121,10 @@ public class GameplayStage : MonoBehaviour , IStage
     void OnNodeClick(Node node)
     {
         if (selected == null)
+        {
             selected = node;
+            selected.Select();
+        }
         else if (selected == node)
             return;
         else if (node.num - 1 == selected.num && selected.num == lastConnectedID)
@@ -127,9 +132,14 @@ public class GameplayStage : MonoBehaviour , IStage
             connectionQueue.Enqueue(new Connection(selected, node));
             lastConnectedID++;
             selected = node;
+            selected.Select();
         }
         else
+        {
+            selected.Deselect();
             selected = null;
-            
+        }
+
+
     }
 }
