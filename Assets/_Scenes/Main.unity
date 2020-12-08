@@ -367,7 +367,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   json: {fileID: 4900000, guid: 099d1baf22eacc6458c082b271299902, type: 3}
-  activeLevelID: 1
+  activeLevelID: 0
 --- !u!4 &496750287
 Transform:
   m_ObjectHideFlags: 0
@@ -499,6 +499,7 @@ MonoBehaviour:
   ropePref: {fileID: 5541686667254425795, guid: 4488d65192740b8478b910ea6b2076cb,
     type: 3}
   levelDataHolder: {fileID: 496750286}
+  stageManager: {fileID: 1068963654}
 --- !u!4 &951496197
 Transform:
   m_ObjectHideFlags: 0

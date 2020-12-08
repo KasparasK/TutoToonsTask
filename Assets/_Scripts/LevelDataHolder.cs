@@ -23,11 +23,6 @@ public class LevelDataHolder : MonoBehaviour
 
     public List<Vector2> GetActiveLevel()
     {
-        print(LevelsRoot.levels.Count);
-
-        List<Vector2> converted = ConvertFromRawData(LevelsRoot.levels[activeLevelID]);
-        print(converted.Count);
-
         return ConvertFromRawData(LevelsRoot.levels[activeLevelID]);
     }
 
